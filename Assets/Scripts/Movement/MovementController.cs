@@ -1,6 +1,8 @@
 using System;
+using Dialogue;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Utility;
 
 
 namespace Movement
@@ -33,6 +35,8 @@ namespace Movement
         {
             Cursor.lockState = CursorLockMode.Locked;
             _cameraAnglesComputed = mainCamera.transform.localEulerAngles;
+            
+            GetComponent<DialogueProvider>()?.TriggerDialogue();
         }
 
         private void Update()

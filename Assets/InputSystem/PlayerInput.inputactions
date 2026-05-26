@@ -29,6 +29,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "dialogues",
+            "id": "352be5c7-0d74-4f5f-bc0a-db21f4514d88",
+            "actions": [
+                {
+                    "name": "skip",
+                    "type": "Button",
+                    "id": "4b9152c9-9e2a-4a34-9a2e-e37995df64bb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8815346b-7d2f-45e4-8707-55d253c88214",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "skip",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
