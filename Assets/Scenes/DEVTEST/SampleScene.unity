@@ -555,6 +555,8 @@ GameObject:
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
+  - component: {fileID: 330585551}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -727,6 +729,50 @@ MonoBehaviour:
   textSequence:
   - Hi there
   - '!!!!!!!!!!'
+--- !u!114 &330585550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bce4463ecc14c7c18bdbb52bdadbb67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::Gameplay.Rating.RatingController
+  ratingMax: 100
+  ratingGainBase: 5
+  onRatingCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 330585551}
+        m_TargetAssemblyTypeName: GameplayController, Gameplay
+        m_MethodName: FinishGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &330585551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32d90133a250cd469388a4c862b6c44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Gameplay::GameplayController
+  successSceneName: 
+  failSceneName: 
+  neutralSceneName: 
 --- !u!1 &396937426
 GameObject:
   m_ObjectHideFlags: 0
