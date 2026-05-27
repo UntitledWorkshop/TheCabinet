@@ -1,3 +1,4 @@
+using Gameplay.Dialogue;
 using UnityEngine;
 using Utility;
 

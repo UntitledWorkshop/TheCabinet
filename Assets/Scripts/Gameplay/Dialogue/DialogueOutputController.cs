@@ -1,15 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Utility;
 
-namespace Dialogue {
+namespace Gameplay.Dialogue {
     public class DialogueOutputController : MonoBehaviour, ISingleton<DialogueOutputController>
     {
         private enum OutputFieldState
@@ -52,7 +50,7 @@ namespace Dialogue {
             outputField.text = outputString;
             
             while (_currentState != OutputFieldState.ShouldSkip)
-                yield return new WaitForNextFrameUnit();
+                yield return new WaitForEndOfFrame();
 
             _currentState = OutputFieldState.Ready;
             OnTextDisplayFinishedAndReady();
@@ -90,9 +88,25 @@ namespace Dialogue {
         {
             ISingleton<DialogueOutputController>.Instance = this;
         }
+
+        private void OnDestroy()
+        {
+            if (ISingleton<DialogueOutputController>.Instance != null)
+            {
+                Debug.LogError("DialogueOutputController: Multiple singleton instances are on scene!");
+                return;
+            }
+            ISingleton<DialogueOutputController>.Instance = null;
+        }
         
         private void Start()
         {
+            if (!playerInput)
+            {
+                Debug.LogWarning("DialogueOutputController: playerInput is missing!");
+                return;
+            }
+            
             playerInput["skip"].performed += OnSkipActionPerformed;
         }
         
@@ -106,12 +120,18 @@ namespace Dialogue {
         
         private void OnEnable()
         {
+            if (!playerInput)
+                return;
+            
             playerInput.Enable();
             playerInput["skip"].Enable();
         }
 
         private void OnDisable()
         {
+            if (!playerInput)
+                return;
+            
             playerInput["skip"].Disable();
             playerInput.Disable();
         }
