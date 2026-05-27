@@ -85,17 +85,18 @@ namespace Gameplay.Dialogue {
         public bool Busy => _currentState != OutputFieldState.Ready;
 
         private void Awake()
-        {
-            ISingleton<DialogueOutputController>.Instance = this;
-        }
-
-        private void OnDestroy()
-        {
+        {    
             if (ISingleton<DialogueOutputController>.Instance != null)
             {
                 Debug.LogError("DialogueOutputController: Multiple singleton instances are on scene!");
                 return;
             }
+            
+            ISingleton<DialogueOutputController>.Instance = this;
+        }
+
+        private void OnDestroy()
+        {
             ISingleton<DialogueOutputController>.Instance = null;
         }
         
@@ -137,12 +138,5 @@ namespace Gameplay.Dialogue {
         }
 
         #endregion
-        
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            
-        }
-#endif
     }
 }
