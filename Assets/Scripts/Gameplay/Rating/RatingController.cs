@@ -6,6 +6,8 @@ namespace Gameplay.Rating
 {
     public class RatingController : MonoBehaviour, ISingleton<RatingController>
     {
+        public static float PersistentRating = 0;
+        
         public enum RatingState
         {
             Success,
@@ -27,14 +29,22 @@ namespace Gameplay.Rating
             
             return Rating >= ratingMax ? RatingState.Fail : RatingState.Neutral;
         }
-        
-        public void Gain(float mul)
+
+        public void Set(float? rating)
         {
-            Rating +=  mul * ratingGainBase;
+            if (!rating.HasValue)
+                return;
+            
+            Rating = rating.Value;
 
             if (Rating <= 0 || Rating >= ratingMax)
                 onRatingCompleted.Invoke();
             onRatingChange.Invoke();
+        }
+        
+        public void Gain(float mul)
+        {
+            Set(mul * ratingGainBase);
         }
         
         private void OnEnable()
@@ -45,6 +55,16 @@ namespace Gameplay.Rating
         private void OnDisable()
         {
             ISingleton<RatingController>.Instance = null;
+        }
+
+        private void OnDestroy()
+        {
+            PersistentRating = Rating;
+        }
+
+        private void Awake()
+        {
+            Set(PersistentRating);
         }
     }
 }
