@@ -20,7 +20,8 @@ namespace Gameplay.SaveNLoad
             FileStream file = new(filename, FileMode.OpenOrCreate);
 
             state.currentSceneName = sceneName;
-            state.currentRatingValue = ISingleton<RatingController>.Instance.Rating;
+            state.currentRatingValue = ISingleton<RatingController>.Instance ? 
+                ISingleton<RatingController>.Instance.Rating : RatingController.PersistentRating;
             
             binaryFormatter.Serialize(file, state);
             file.Close();

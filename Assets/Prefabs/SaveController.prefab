@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8768486b809f05f989e592d50b741eea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Gameplay::Gameplay.SaveNLoad.SaveControllerComponent
-  fileName: 
+  fileName: gamesave.bin
   filePath: 

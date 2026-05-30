@@ -30,6 +30,11 @@ namespace Gameplay.SaveNLoad
             if (filePath == "")
                 filePath = Application.persistentDataPath;
         }
+
+        private void OnDestroy()
+        {
+            Save();
+        }
         
         private void OnEnable()
         {

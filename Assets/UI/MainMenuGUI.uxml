@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/style.uss?fileID=7433441132597879392&amp;guid=7dc2f77f0855deff9ae79347ca8b85c9&amp;type=3#style"/>
+    <ui:VisualElement style="flex-grow: 1; left: auto; right: auto; opacity: 1; align-items: center; justify-content: center;">
+        <ui:Button text="Start Game" name="newgame" class="btn" style="-unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=c7ac13da75630fe72b94c2b7a1f821bc&amp;type=3#NotInter-Regular&quot;);"/>
+        <ui:Button text="Load Game" name="loadgame" class="btn" style="-unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=c7ac13da75630fe72b94c2b7a1f821bc&amp;type=3#NotInter-Regular&quot;);"/>
+        <ui:Button text="Settings" name="settings" class="btn" style="-unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=c7ac13da75630fe72b94c2b7a1f821bc&amp;type=3#NotInter-Regular&quot;);"/>
+        <ui:Button text="Quit" name="quit" class="btn" style="-unity-font-definition: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&amp;guid=c7ac13da75630fe72b94c2b7a1f821bc&amp;type=3#NotInter-Regular&quot;);"/>
+    </ui:VisualElement>
+</ui:UXML>
