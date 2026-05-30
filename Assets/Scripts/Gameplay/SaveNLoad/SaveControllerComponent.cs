@@ -1,16 +1,44 @@
+using Unity.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Utility;
 
-public class SaveControllerGameObject : MonoBehaviour
+namespace Gameplay.SaveNLoad
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public class SaveControllerComponent : MonoBehaviour, ISingleton<SaveControllerComponent>
     {
-        
-    }
+        [SerializeField] private string fileName;
+        [SerializeField] private string filePath;
 
-    // Update is called once per frame
-    void Update()
-    {
+        public void Save()
+        {
+            var sceneName = SceneManager.GetActiveScene().name;
+            SaveController.SaveGame(filePath + "/" + fileName, sceneName);
+        }
         
+        public void Load()
+        {
+            if (SaveController.LoadGame(filePath + "/" + fileName, out var sceneName))
+            {
+                SceneManager.LoadScene(sceneName);
+            }
+        }
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+            if (filePath == "")
+                filePath = Application.persistentDataPath;
+        }
+        
+        private void OnEnable()
+        {
+            ISingleton<SaveControllerComponent>.Instance = this;
+        }
+
+        private void OnDisable()
+        {
+            ISingleton<SaveControllerComponent>.Instance = null;
+        }
     }
 }

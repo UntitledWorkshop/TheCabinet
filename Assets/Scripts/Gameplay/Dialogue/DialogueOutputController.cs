@@ -86,7 +86,8 @@ namespace Gameplay.Dialogue {
 
         private void Awake()
         {    
-            if (ISingleton<DialogueOutputController>.Instance != null)
+            if (ISingleton<DialogueOutputController>.Instance != null && 
+                ISingleton<DialogueOutputController>.Instance != this)
             {
                 Debug.LogError("DialogueOutputController: Multiple singleton instances are on scene!");
                 return;
@@ -121,6 +122,7 @@ namespace Gameplay.Dialogue {
         
         private void OnEnable()
         {
+            ISingleton<DialogueOutputController>.Instance = this;
             if (!playerInput)
                 return;
             
@@ -130,6 +132,7 @@ namespace Gameplay.Dialogue {
 
         private void OnDisable()
         {
+            ISingleton<DialogueOutputController>.Instance = null;
             if (!playerInput)
                 return;
             

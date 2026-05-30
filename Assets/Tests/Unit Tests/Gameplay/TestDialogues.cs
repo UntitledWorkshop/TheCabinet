@@ -15,7 +15,7 @@ namespace Tests.Unit_Tests.Gameplay {
         [UnityTest]
         public IEnumerator TestDialogueSimpleOutput()
         {
-            SceneManager.LoadScene("TestDialogue", LoadSceneMode.Additive);
+            SceneManager.LoadScene("TestDialogue", LoadSceneMode.Single);
             yield return null;
 
             var controller = Object.FindAnyObjectByType<DialogueOutputController>();

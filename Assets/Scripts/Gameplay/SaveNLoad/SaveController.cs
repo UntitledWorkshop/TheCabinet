@@ -19,16 +19,17 @@ namespace Gameplay.SaveNLoad
             BinaryFormatter binaryFormatter = new();
             FileStream file = new(filename, FileMode.OpenOrCreate);
 
-            state.CurrentSceneName = sceneName;
-            state.CurrentRatingValue = ISingleton<RatingController>.Instance.Rating;
+            state.currentSceneName = sceneName;
+            state.currentRatingValue = ISingleton<RatingController>.Instance.Rating;
             
             binaryFormatter.Serialize(file, state);
             file.Close();
         }
 
-        public static bool LoadGame(string filename, ref string sceneName)
+        public static bool LoadGame(string filename, out string sceneName)
         {
             BinaryFormatter binaryFormatter = new();
+            sceneName = string.Empty;
             FileStream file;
             try
             {
@@ -48,10 +49,10 @@ namespace Gameplay.SaveNLoad
                 return false;
             }
             
-            RatingController.PersistentRating = state.CurrentRatingValue;
+            RatingController.PersistentRating = state.currentRatingValue;
             // Notify if we already have an instance -->
-            ISingleton<RatingController>.Instance?.Set(state.CurrentRatingValue);
-            sceneName = state.CurrentSceneName;
+            ISingleton<RatingController>.Instance?.Set(state.currentRatingValue);
+            sceneName = state.currentSceneName;
             return true;
         }
     }
