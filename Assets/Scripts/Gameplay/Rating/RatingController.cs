@@ -16,6 +16,7 @@ namespace Gameplay.Rating
         [SerializeField, Range(0, 100)] private float ratingMax;
         [SerializeField, Range(0, 100)] private float ratingGainBase;
         [SerializeField] private UnityEvent onRatingCompleted;
+        [SerializeField] private UnityEvent onRatingChange;
         
         public float Rating { get; private set; }
 
@@ -33,6 +34,7 @@ namespace Gameplay.Rating
 
             if (Rating <= 0 || Rating >= ratingMax)
                 onRatingCompleted.Invoke();
+            onRatingChange.Invoke();
         }
         
         private void OnEnable()

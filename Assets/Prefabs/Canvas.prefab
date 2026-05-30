@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83e92da6d2d200b3c99a48b17b6897bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dialogue.DialogueOutputController
-  symbolDelay: 0
+  symbolDelay: 0.05
   onCharacterDisplay:
     m_PersistentCalls:
       m_Calls:
