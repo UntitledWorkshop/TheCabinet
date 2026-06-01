@@ -17,17 +17,18 @@ namespace Gameplay.Rating
         
         [SerializeField, Range(0, 100)] private float ratingMax;
         [SerializeField, Range(0, 100)] private float ratingGainBase;
+        [SerializeField, Range(1, 10)] private uint ratingGainCount;
         [SerializeField] private UnityEvent onRatingCompleted;
         [SerializeField] private UnityEvent onRatingChange;
-        
-        public float Rating { get; private set; }
 
+        private uint _currentRatingGainCount = 0;
+        
         public RatingState GetRatingState()
         {
-            if (Rating <= 0)
+            if (PersistentRating <= 0)
                 return RatingState.Success;
             
-            return Rating >= ratingMax ? RatingState.Fail : RatingState.Neutral;
+            return PersistentRating >= ratingMax ? RatingState.Fail : RatingState.Neutral;
         }
 
         public void Set(float? rating)
@@ -35,16 +36,23 @@ namespace Gameplay.Rating
             if (!rating.HasValue)
                 return;
             
-            Rating = rating.Value;
+            PersistentRating = rating.Value;
 
-            if (Rating <= 0 || Rating >= ratingMax)
+            if (PersistentRating <= 0 || PersistentRating >= ratingMax)
                 onRatingCompleted.Invoke();
+            
             onRatingChange.Invoke();
         }
         
         public void Gain(float mul)
         {
+            _currentRatingGainCount++;
             Set(mul * ratingGainBase);
+
+            if (_currentRatingGainCount >= ratingGainCount)
+            {
+                onRatingCompleted.Invoke();
+            }
         }
         
         private void OnEnable()
@@ -55,16 +63,6 @@ namespace Gameplay.Rating
         private void OnDisable()
         {
             ISingleton<RatingController>.Instance = null;
-        }
-
-        private void OnDestroy()
-        {
-            PersistentRating = Rating;
-        }
-
-        private void Awake()
-        {
-            Set(PersistentRating);
         }
     }
 }

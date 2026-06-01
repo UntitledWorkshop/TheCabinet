@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 135892787053575501}
   - component: {fileID: 8248617259896166971}
   - component: {fileID: 8646642003141392240}
-  - component: {fileID: 4338710912964833961}
   - component: {fileID: 8199130508999450111}
   - component: {fileID: 4779977357124858509}
   m_Layer: 0
@@ -173,21 +172,6 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   mouseSensitivity: 1
   clampAngles: {x: -79, y: 79}
---- !u!114 &4338710912964833961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8153444929258318499}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e199588f8c1d03719963bd92dec80c2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dialogue.DialogueProvider
-  textSequence:
-  - Hi there
-  - '!!!!!!!!!!'
 --- !u!114 &8199130508999450111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Gameplay::Gameplay.Rating.RatingController
   ratingMax: 100
   ratingGainBase: 5
+  ratingGainCount: 1
   onRatingCompleted:
     m_PersistentCalls:
       m_Calls:

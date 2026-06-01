@@ -8,7 +8,7 @@ namespace UI
 
         private void Start()
         {
-            foreach (ButtonController controller in buttons)
+            foreach (var controller in buttons)
                 controller.Initialize();
         }
     }

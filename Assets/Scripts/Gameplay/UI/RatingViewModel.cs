@@ -15,7 +15,7 @@ namespace Gameplay.UI
         
         public void OnRatingChanged()
         {
-            var currRating = ISingleton<RatingController>.Instance.Rating;
+            var currRating = RatingController.PersistentRating;
             ratingText.text = currRating.ToString(CultureInfo.InvariantCulture);
         }
     }
